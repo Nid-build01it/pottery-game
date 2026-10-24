@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>3D Pottery Game - Let's Create!</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <!-- 3D Three.js Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- UI Overlay Layer -->
+    <div id="ui-layer">
+      <!-- TOP BAR: Pattern Categories & Cards -->
+      <div class="top-bar-container interactive" id="pattern-strip-container">
+        <!-- Category Tabs -->
+        <div class="category-tabs" id="category-tabs"></div>
+
+        <!-- Horizontal Scrollable Cards Strip -->
+        <div class="pattern-strip-wrapper" id="pattern-bar-cards"></div>
+      </div>
+
+      <!-- Top Corner Buttons: Undo & Exit -->
+      <button class="corner-btn interactive" id="btn-undo" title="Undo Last Action">
+        <div class="btn-circle">↺</div>
+        <div class="btn-label">undo</div>
+      </button>
+
+      <button class="corner-btn interactive" id="btn-exit" title="Reset / New Pot">
+        <div class="btn-circle">✕</div>
+        <div class="btn-label">exit</div>
+      </button>
+
+      <!-- Bottom-Left Reference Polaroid Photo Card -->
+      <div class="target-card interactive" id="target-card" title="Click to cycle reference target pot">
+        <div class="polaroid-frame">
+          <canvas id="target-silhouette-canvas" width="130" height="130"></canvas>
+        </div>
+        <div class="target-info">
+          <div class="target-title" id="target-pot-name">Grecian Amphora</div>
+          <div class="target-stars">★★★★☆</div>
+          <div class="target-hint">Tap to change</div>
+        </div>
+      </div>
+
+      <!-- Floating Color Palette Bar for Paint tool -->
+      <div class="color-palette-bar hidden interactive" id="color-palette-bar"></div>
+
+      <!-- BOTTOM TOOLBAR -->
+      <div class="bottom-toolbar interactive">
+        <button class="tool-btn active" data-tool="shape" title="Shape clay with fingers">
+          <span class="btn-icon">🖐️</span>
+          <span class="btn-text">Shape</span>
+        </button>
+
+        <button class="tool-btn" data-tool="smooth" title="Smooth bumps and ridges">
+          <span class="btn-icon">💧</span>
+          <span class="btn-text">Smooth</span>
+        </button>
+
+        <button class="tool-btn" data-tool="pattern" title="Apply decorative ethnic bands">
+          <span class="btn-icon">💠</span>
+          <span class="btn-text">Pattern</span>
+        </button>
+
+        <button class="tool-btn" data-tool="paint" title="Glaze brush painting">
+          <span class="btn-icon">🎨</span>
+          <span class="btn-text">Paint</span>
+        </button>
+
+        <button class="tool-btn" data-tool="eraser" title="Erase decorations back to raw clay">
+          <span class="btn-icon">🧹</span>
+          <span class="btn-text">Eraser</span>
+        </button>
+
+        <button class="action-btn btn-finish" id="btn-finish" title="Evaluate and Sell Pot">
+          <span>🏆</span>
+          <span>Finish</span>
+        </button>
+
+        <button class="action-btn btn-camera" id="btn-camera" title="Export PNG Photo">
+          <span>📷</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SOLD CELEBRATION MODAL -->
+    <div class="modal-overlay hidden interactive" id="sold-modal">
+      <div class="sold-card">
+        <div class="sold-badge">SOLD!</div>
+        <div class="sold-stars" id="sold-stars"></div>
+        <div class="price-display" id="sold-price">$380</div>
+
+        <div class="appraisal-details">
+          <div class="appraisal-row">
+            <span>Target Match:</span>
+            <span class="appraisal-val" id="sold-target-name">Grecian Amphora</span>
+          </div>
+          <div class="appraisal-row">
+            <span>Shape Accuracy:</span>
+            <span class="appraisal-val" id="sold-shape-acc">88%</span>
+          </div>
+          <div class="appraisal-row">
+            <span>Decoration Bonus:</span>
+            <span class="appraisal-val" id="sold-decor-bonus">+$90</span>
+          </div>
+        </div>
+
+        <div class="modal-buttons">
+          <button class="modal-btn secondary" id="modal-btn-keep">Keep Crafting</button>
+          <button class="modal-btn primary" id="modal-btn-new">Craft Next Pot</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXIT / RESET CONFIRMATION MODAL -->
+    <div class="modal-overlay hidden interactive" id="exit-modal">
+      <div class="exit-card">
+        <div class="exit-title">Start a New Pot?</div>
+        <div class="exit-msg">Your current pot will be reset to a fresh lump of clay.</div>
+        <div class="modal-buttons">
+          <button class="modal-btn secondary" id="exit-btn-cancel">Cancel</button>
+          <button class="modal-btn primary" id="exit-btn-confirm">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
